@@ -1,4 +1,4 @@
-import { FileMimeType } from "../../../tools/fileMimeTypes";
+import { FileMimeType } from "../../../utils/fileMimeTypes";
 
 export type HTTPMethods = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 type ContentTypes = "application/json" | "multipart/form-data" | "text/plain";

@@ -1,0 +1,35 @@
+.svg {
+  width: 33px;
+  height: 33px;
+  margin-top: 0.1rem;
+}
+
+.headline {
+  color: white;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 32px;
+  margin-top: 0.1rem;
+}
+
+.layout {
+  height: 100vh;
+  width: 100vw;
+  background: #dc0a2d;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: flex-start;
+  height: fit-content;
+  gap: 1.3rem;
+  padding-top: 1.6rem;
+  padding-left: 1.5rem;
+}
+
+.contentContainer {
+  height: 80%;
+  flex: 80%;
+}

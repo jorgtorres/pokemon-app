@@ -2,9 +2,9 @@ import React from "react";
 import * as styles from "./Pokedex.module.scss";
 import PokedexListing from "./components/PokedexListing";
 import Search from "../../assets/search.svg";
-import TextInput from "../../components/TextInput";
-import FilterButton from "../../components/FilterButton";
-import Pokeball from "../../assets/pokeball.svg";
+import TextInput from "../../components/ui/TextInput";
+import SortButton from "../../components/ui/SortButton";
+import PokedexLayout from "../../components/ui/PokedexLayout";
 
 interface PokedexProps {
   location: Location;
@@ -21,12 +21,9 @@ const Pokedex = ({ location, ...rest }: PokedexProps) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
+
   return (
-    <div className={styles.layout}>
-      <div className={styles.titleContainer}>
-        <Pokeball className={styles.svg} />
-        <h1 className={styles.headline}>Pokédex</h1>
-      </div>
+    <PokedexLayout>
       <div className={styles.pokedexContainer}>
         <form
           className={styles.form}
@@ -42,12 +39,12 @@ const Pokedex = ({ location, ...rest }: PokedexProps) => {
               handleUpdate={handleUpdate}
               Icon={Search}
             />
-            <FilterButton />
+            <SortButton />
           </div>
         </form>
-        <PokedexListing search={search} />
+        <PokedexListing search={search} sort={""} />
       </div>
-    </div>
+    </PokedexLayout>
   );
 };
 

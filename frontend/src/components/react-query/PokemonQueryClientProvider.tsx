@@ -1,8 +1,9 @@
-import React from "react";
-import * as styles from "./layout.module.scss";
 import { QueryClient, QueryClientProvider } from "react-query";
+import React from "react";
 
-const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+const PokemonQueryClientProvider: React.FC<React.PropsWithChildren<{}>> = ({
+  children,
+}) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -18,10 +19,8 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className={styles.contentContainer}>{children}</div>
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
 
-export default Layout;
+export default PokemonQueryClientProvider;

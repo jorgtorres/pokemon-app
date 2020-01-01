@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import * as styles from "./FilterButton.module.scss";
-import Sort from "../../assets/sort.svg";
+import * as styles from "./SortButton.module.scss";
+import Sort from "../../../assets/sort.svg";
 
-interface FilterButtonProps {
+interface SortButtonProps {
   onChange?: (value: "number" | "name") => void;
 }
 
-const FilterButton = ({ onChange, ...rest }: FilterButtonProps) => {
+const SortButton = ({ onChange, ...rest }: SortButtonProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState<"number" | "name">("number");
   const ref = useRef<HTMLDivElement | null>(null);
@@ -43,8 +43,8 @@ const FilterButton = ({ onChange, ...rest }: FilterButtonProps) => {
 
       {open && (
         <div className={styles.dropdown} role="menu">
+          <h4 className={styles.dropdownTitle}>Sort by:</h4>
           <div className={styles.dropdownInner}>
-            <h4 className={styles.dropdownTitle}>Sort by:</h4>
             <div className={styles.options}>
               <label className={styles.option}>
                 <input
@@ -74,4 +74,4 @@ const FilterButton = ({ onChange, ...rest }: FilterButtonProps) => {
   );
 };
 
-export default FilterButton;
+export default SortButton;

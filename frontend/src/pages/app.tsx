@@ -2,8 +2,8 @@ import React, { lazy, Suspense } from "react";
 import type { HeadFC } from "gatsby";
 import { Router } from "@reach/router";
 import Login from "../containers/Login/Login";
-import PrivateRoute from "../components/PrivateRoute";
-import Layout from "../components/Layout";
+import PrivateRoute from "../routes";
+import PokemonQueryClientProvider from "../components/react-query/PokemonQueryClientProvider";
 
 const AppRoutes: React.FC = () => {
   const Pokedex = lazy(() => import("../containers/Pokedex"));
@@ -11,7 +11,7 @@ const AppRoutes: React.FC = () => {
 
   return (
     <main>
-      <Layout>
+      <PokemonQueryClientProvider>
         <Suspense fallback={null}>
           <Router>
             <PrivateRoute path="/app/pokedex" component={Pokedex} />
@@ -19,7 +19,7 @@ const AppRoutes: React.FC = () => {
             <Login path="/app/login" />
           </Router>
         </Suspense>
-      </Layout>
+      </PokemonQueryClientProvider>
     </main>
   );
 };

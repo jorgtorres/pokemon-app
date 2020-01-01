@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useBackendLogin } from "../../api/services/backend/hooks/backendHooks";
 import { navigate } from "gatsby";
 import User from "../../assets/user.svg";
 import Password from "../../assets/password.svg";
 import * as styles from "./Login.module.scss";
-import { setAccessToken } from "../../api/auth";
-import TextInput from "../../components/TextInput";
-import Pokeball from "../../assets/pokeball.svg";
+import { isLoggedIn, setAccessToken } from "../../api/auth";
+import TextInput from "../../components/ui/TextInput";
+import PokedexLayout from "../../components/ui/PokedexLayout";
 
 interface LoginProps {
   path?: string;
@@ -16,6 +16,12 @@ const Login = ({ path }: LoginProps) => {
   const backendLogin = useBackendLogin();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  useEffect(() => {
+    if (isLoggedIn() && location?.pathname == `/app/login/`) {
+      navigate(`/app/pokedex`);
+    }
+  }, [location?.pathname]);
 
   const handleUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === "password") {
@@ -50,11 +56,7 @@ const Login = ({ path }: LoginProps) => {
   };
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.titleContainer}>
-        <Pokeball className={styles.svg} />
-        <h1 className={styles.headline}>Pokédex</h1>
-      </div>
+    <PokedexLayout>
       <div className={styles.loginContainer}>
         <form
           method="post"
@@ -85,7 +87,7 @@ const Login = ({ path }: LoginProps) => {
           </div>
         </form>
       </div>
-    </div>
+    </PokedexLayout>
   );
 };
 

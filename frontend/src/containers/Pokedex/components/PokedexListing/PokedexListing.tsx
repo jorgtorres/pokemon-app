@@ -35,9 +35,11 @@ const PokedexListing = ({ search, sort }: PokedexListingProps) => {
 
   return (
     <div className={styles.listingContainer}>
-      {parsedResponse?.map((pokemon) => (
-        <PokemonCard pokemon={pokemon} />
-      ))}
+      <div className={styles.listingContent}>
+        {parsedResponse?.map((pokemon) => (
+          <PokemonCard pokemon={pokemon} />
+        ))}
+      </div>
     </div>
   );
 };

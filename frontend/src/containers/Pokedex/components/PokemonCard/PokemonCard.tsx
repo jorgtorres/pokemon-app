@@ -24,8 +24,8 @@ const PokemonCard = ({ pokemon }: PokemonCardProps) => {
       <img
         className={styles.pokemonImage}
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`}
+        alt={pokemon.name}
       />
-
       <div className={styles.pokemonName}>{pokemon.name}</div>
     </div>
   );
