@@ -10,6 +10,30 @@
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:8000",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "name": "vscode-jest-tests.v2",
+      "request": "launch",
+      "runtimeArgs": [
+        "--inspect-brk",
+        "${workspaceRoot}/node_modules/jest/bin/jest.js",
+        "--runInBand"
+      ],
+      "args": [
+        //"--runInBand",
+        "--watchAll=false",
+        "--runTestsByPath",
+        "${workspaceFolder}/src/components/ui/PagePicker/__tests__/PagePicker.test.tsx"
+        //"--detectOpenHandles"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "windows": {
+        "program": "jest"
+      },
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
     }
   ]
 }

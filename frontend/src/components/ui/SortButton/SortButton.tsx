@@ -1,15 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as styles from "./SortButton.module.scss";
-import Sort from "../../../assets/sort.svg";
+import SortPlaceholderIcon from "../../../assets/sortByName.svg";
+import SortByNumber from "../../../assets/tag.svg";
+import SortByText from "../../../assets/text_format.svg";
+import useTypedSelector from "../../../redux/useTypedSelector";
+import { useDispatch } from "react-redux";
+import { setSortValue } from "../../../redux/reducers/filterPageReducer";
 
-interface SortButtonProps {
-  onChange?: (value: "number" | "name") => void;
-}
+export type SortType = "number" | "name" | "";
 
-const SortButton = ({ onChange, ...rest }: SortButtonProps) => {
+interface SortButtonProps {}
+
+const SortButton = ({ ...rest }: SortButtonProps) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState<"number" | "name">("number");
   const ref = useRef<HTMLDivElement | null>(null);
+  const dispatch = useDispatch();
+
+  const {
+    pokedexReducer: {
+      filterPageReducer: {
+        filterPageValues: { sortValue },
+      },
+    },
+  } = useTypedSelector();
 
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
@@ -23,8 +36,7 @@ const SortButton = ({ onChange, ...rest }: SortButtonProps) => {
   }, []);
 
   function handleSelect(v: "number" | "name") {
-    setValue(v);
-    onChange?.(v);
+    dispatch(setSortValue(v));
     setOpen(false);
   }
 
@@ -33,12 +45,15 @@ const SortButton = ({ onChange, ...rest }: SortButtonProps) => {
       <button
         aria-haspopup="true"
         aria-expanded={open}
+        data-testid="sort-button"
         onClick={() => setOpen((s) => !s)}
         value="Filter"
         className={styles.circleButton}
         {...rest}
       >
-        <Sort className={styles.icon} />
+        {sortValue === "" && <SortPlaceholderIcon className={styles.icon} />}
+        {sortValue === "name" && <SortByText className={styles.icon} />}
+        {sortValue === "number" && <SortByNumber className={styles.icon} />}
       </button>
 
       {open && (
@@ -50,21 +65,31 @@ const SortButton = ({ onChange, ...rest }: SortButtonProps) => {
                 <input
                   type="radio"
                   name="sort"
-                  checked={value === "number"}
+                  checked={sortValue === "number"}
                   onChange={() => handleSelect("number")}
                 />
                 <span className={styles.radioMark} aria-hidden />
-                <span className={styles.optionLabel}>Number</span>
+                <span
+                  data-testid="sort-option-number"
+                  className={styles.optionLabel}
+                >
+                  Number
+                </span>
               </label>
               <label className={styles.option}>
                 <input
                   type="radio"
                   name="sort"
-                  checked={value === "name"}
+                  checked={sortValue === "name"}
                   onChange={() => handleSelect("name")}
                 />
                 <span className={styles.radioMark} aria-hidden />
-                <span className={styles.optionLabel}>Name</span>
+                <span
+                  data-testid="sort-option-name"
+                  className={styles.optionLabel}
+                >
+                  Name
+                </span>
               </label>
             </div>
           </div>

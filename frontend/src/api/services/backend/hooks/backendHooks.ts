@@ -1,28 +1,13 @@
-import LoginResponse from "../../../model/backend/LoginResponse";
-import Pokemon from "../../../model/backend/Pokemon";
+import Pokemon, { PokemonSpecies } from "../../../model/backend/Pokemon";
 import { SearchResponse } from "../../../model/backend/SearchResponse";
-import {
-  useCustomMutation,
-  useCustomQuery,
-  UseCustomQueryOptions,
-} from "../../../utils";
+import { useCustomQuery, UseCustomQueryOptions } from "../../../utils";
 import backendService from "../backend.service";
 
-export const useBackendLogin = () => {
-  return useCustomMutation<
-    LoginResponse,
-    Parameters<typeof backendService.backend.login>[0]
-  >(async (loginData) => await backendService.backend.login(loginData), {
-    mutationKey: "POST_LOGIN",
-    useGenericErrorNotification: true,
-    onSuccess: () => {
-      console.log("Login successful");
-    },
-  });
-};
-
 export const useBackendSearchPokemons = <T extends SearchResponse<Pokemon[]>>(
-  { limit }: Parameters<typeof backendService.backend.searchPokemons>[0],
+  {
+    limit,
+    offset,
+  }: Parameters<typeof backendService.backend.searchPokemons>[0],
   options?: UseCustomQueryOptions<T>
 ) => {
   return useCustomQuery<T>(
@@ -30,6 +15,7 @@ export const useBackendSearchPokemons = <T extends SearchResponse<Pokemon[]>>(
     async () =>
       await backendService.backend.searchPokemons({
         limit,
+        offset,
       }),
     options
   );
@@ -42,6 +28,17 @@ export const useBackendGetPokemon = <T extends Pokemon>(
   return useCustomQuery<T>(
     ["POKEMON", id],
     async () => await backendService.backend.getPokemon(id),
+    options
+  );
+};
+
+export const useBackendGetPokemonSpecies = <T extends PokemonSpecies>(
+  id: Parameters<typeof backendService.backend.getPokemonSpecies>[0],
+  options?: UseCustomQueryOptions<T>
+) => {
+  return useCustomQuery<T>(
+    ["POKEMON_SPECIES", id.toString()],
+    async () => await backendService.backend.getPokemonSpecies(id),
     options
   );
 };

@@ -22,6 +22,12 @@ export class PokemonRouter {
       passport.authenticate('bearer', { session: false }),
       pokemonController.getPokemon
     );
+
+    this.router.get(
+      '/pokemon-species/:id',
+      passport.authenticate('bearer', { session: false }),
+      pokemonController.getPokemonSpecies
+    );
   }
 }
 

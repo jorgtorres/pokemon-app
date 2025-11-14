@@ -3,19 +3,17 @@
 }
 
 .sectionTitle {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  color: #999;
   margin: 0 0 1.5rem 0;
   text-align: center;
 }
 
 .aboutGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 1rem;
   margin-bottom: 1.5rem;
-  align-items: start;
+  align-items: flex-end;
 }
 
 .stat {
@@ -26,18 +24,27 @@
   gap: 0.5rem;
 }
 
+.statContent {
+  display: flex;
+  height: 28px;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .icon {
-  font-size: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .value {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 100;
   color: #222;
   margin: 0;
 }
 
 .label {
+  flex: 0 0 12px;
   font-size: 12px;
   color: #999;
   margin: 0;
@@ -45,7 +52,7 @@
 }
 
 .divider {
-  height: 40px;
+  height: 55px;
   width: 1px;
   background: #ddd;
   margin: 0 auto;
@@ -61,6 +68,7 @@
 .description {
   font-size: 14px;
   line-height: 1.6;
+  text-justify: distribute-all-lines;
   color: #555;
   margin: 0;
 }

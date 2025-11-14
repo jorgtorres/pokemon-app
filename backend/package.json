@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run build && npm run start",
-    "test": "test",
+    "test": "jest --coverage",
     "start": "npm run serve",
     "build": "npm run build-ts && npm run eslint",
     "serve": "PORT=8008 node dist/src/index.js",
@@ -44,6 +44,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/express-session": "^1.18.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
     "@types/oauth2orize": "^1.11.5",
     "@types/passport": "^1.0.17",
@@ -52,8 +53,11 @@
     "@types/passport-oauth2-client-password": "^0.1.6",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
+    "jest": "^30.2.0",
     "jiti": "^2.6.1",
     "prettier": "3.6.2",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
     "typescript-eslint": "^8.46.4"
   }
 }

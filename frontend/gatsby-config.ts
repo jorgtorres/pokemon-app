@@ -3,7 +3,11 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `pokemon app`,
+    description:
+      "PokeAPI visualizer project for learning and exploring Pokémon data",
     siteUrl: `https://www.yourdomain.tld`,
+    twitterUsername: "@yourtwitterhandle",
+    image: "/src/images/icon.png",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

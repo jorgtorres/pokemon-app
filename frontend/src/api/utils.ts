@@ -1,13 +1,8 @@
-import { getAccessToken } from "./auth";
+import { getAccessToken, removeAccessToken } from "./auth";
 import { invokeService } from "./services/invokeService";
 import ServiceConfig from "./model/invokeServices/serviceConfig";
-import type {
-  MutationFunction,
-  QueryKey,
-  UseMutationOptions,
-  UseQueryOptions,
-} from "react-query";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import type { QueryKey, UseQueryOptions } from "react-query";
+import { useQuery } from "react-query";
 import type { AxiosError } from "axios";
 
 const fetchWithCancellation = async <T>(
@@ -16,7 +11,7 @@ const fetchWithCancellation = async <T>(
   isBasicAuth: boolean = false
 ): Promise<T> => {
   try {
-    const { data } = await invokeService(
+    const response = await invokeService(
       {
         ...config,
         headers: {
@@ -28,10 +23,9 @@ const fetchWithCancellation = async <T>(
       },
       serviceName
     );
-    return data;
+    return response?.data;
   } catch (err) {
-    const axiosErr = err as AxiosError | unknown;
-    throw axiosErr;
+    return Promise.reject(err);
   }
 };
 
@@ -58,41 +52,3 @@ export type UseCustomQueryOptions<T> = UseQueryOptions<
   T,
   QueryKey
 >;
-
-export function useCustomMutation<TData, TVariables>(
-  mutationFn: MutationFunction<TData, TVariables>,
-  options?: UseMutationOptions<TData, AxiosError<any>, TVariables> & {
-    invalidateQueryKeys?: string[][];
-    useGenericErrorNotification?: boolean;
-  }
-) {
-  const queryClient = useQueryClient();
-  const {
-    invalidateQueryKeys = [],
-    useGenericErrorNotification = true,
-    onSuccess,
-    onError,
-    ...mutationOptions
-  } = options || {};
-
-  return useMutation<TData, AxiosError, TVariables, unknown>(
-    async (variables) => mutationFn(variables),
-    {
-      ...mutationOptions,
-      onSuccess: async (data, variables, context) => {
-        if (invalidateQueryKeys.length) {
-          for (const queryKey of invalidateQueryKeys) {
-            await queryClient.invalidateQueries(queryKey);
-          }
-        }
-        onSuccess?.(data, variables, context);
-      },
-      onError: (err, variables, context) => {
-        if (useGenericErrorNotification) {
-          console.log("An error occurred:", err);
-        }
-        onError?.(err, variables, context);
-      },
-    }
-  );
-}

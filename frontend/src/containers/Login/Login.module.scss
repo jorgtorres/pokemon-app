@@ -8,6 +8,8 @@
 
 .formContainer {
   display: flex;
+  width: 300px;
+  margin-top: 1rem;
   flex-direction: column;
   gap: 0.5rem;
 }
@@ -42,6 +44,7 @@
   /* keep readable text above the background */
   color: #111;
   margin-top: 1rem;
+  margin-right: -10px;
   /* place the button on the right edge of the form container */
   align-self: flex-end;
   font-weight: 700;

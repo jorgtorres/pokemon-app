@@ -1,8 +1,8 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
+  width: 90%;
+  margin-top: 1rem;
   color: white;
   position: relative;
 }
@@ -30,16 +30,14 @@
 
 .title {
   flex: 1;
-  text-align: center;
+  text-align: left;
   font-size: 32px;
+  padding-left: 1rem;
   font-weight: 700;
   margin: 0;
 }
 
 .id {
-  position: absolute;
-  right: 2rem;
-  top: 2rem;
   font-size: 18px;
   font-weight: 600;
   opacity: 0.9;
@@ -49,7 +47,7 @@
   /* place the previous button fixed to the left middle of the viewport */
   position: fixed;
   left: 1rem;
-  top: 50%;
+  top: 250px;
   transform: translateY(-50%);
   z-index: 9999;
 }
@@ -58,7 +56,7 @@
   /* place the next button fixed to the right middle of the viewport */
   position: fixed;
   right: 1rem;
-  top: 50%;
+  top: 250px;
   transform: translateY(-50%);
   z-index: 9999;
 }

@@ -2,7 +2,7 @@ import oauth2orize from 'oauth2orize';
 import db from '../db.js';
 import crypto from 'crypto';
 import config from '../config/config.json' with { type: 'json' };
-import type User from 'model/User.js';
+import type User from '../model/User.js';
 
 interface TokenModel {
   userId: string;

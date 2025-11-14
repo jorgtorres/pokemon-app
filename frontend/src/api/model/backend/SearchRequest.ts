@@ -1,5 +1,6 @@
 export interface SearchRequest {
-  limit?: string;
+  limit?: number;
+  offset?: number;
   password?: string;
   grant_type?: string;
 }

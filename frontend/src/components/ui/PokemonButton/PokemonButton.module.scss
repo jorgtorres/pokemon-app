@@ -1,0 +1,27 @@
+.button {
+  min-width: 50px;
+  width: fit-content;
+  min-height: 40px;
+  height: fit-content;
+  /* show a solid grey half on the left and white on the right (no transparency so underlying red won't show through) */
+  background: linear-gradient(0deg, #e6e6e6 50%, #ffffff 50%);
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.329);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-position 0.2s ease;
+
+  /* keep readable text above the background */
+  margin-top: 1rem;
+  /* place the button on the right edge of the form container */
+  align-self: flex-end;
+  font-weight: 700;
+}

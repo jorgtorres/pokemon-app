@@ -16,3 +16,11 @@
   padding-left: 1.6rem;
   gap: 1.5rem;
 }
+
+.paginationContainer {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}

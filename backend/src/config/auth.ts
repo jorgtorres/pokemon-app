@@ -2,9 +2,9 @@ import passport from 'passport';
 import { BasicStrategy } from 'passport-http';
 import { Strategy as ClientPasswordStrategy } from 'passport-oauth2-client-password';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
-import type Client from 'model/Client.js';
-import type User from 'model/User.js';
-import type AccessToken from 'model/AccessToken.js';
+import type Client from '../model/Client.js';
+import type User from '../model/User.js';
+import type AccessToken from '../model/AccessToken.js';
 import db from '../db.js';
 import config from './config.json' with { type: 'json' };
 

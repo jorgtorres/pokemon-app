@@ -4,6 +4,8 @@ import { Router } from "@reach/router";
 import Login from "../containers/Login/Login";
 import PrivateRoute from "../routes";
 import PokemonQueryClientProvider from "../components/react-query/PokemonQueryClientProvider";
+import { ToastContainer } from "react-toastify";
+import SEO from "../components/seo";
 
 const AppRoutes: React.FC = () => {
   const Pokedex = lazy(() => import("../containers/Pokedex"));
@@ -20,10 +22,11 @@ const AppRoutes: React.FC = () => {
           </Router>
         </Suspense>
       </PokemonQueryClientProvider>
+      <ToastContainer position="top-right" autoClose={3000} />
     </main>
   );
 };
 
 export default AppRoutes;
 
-export const Head: HeadFC = () => <title>App</title>;
+export const Head: HeadFC = () => <SEO />;

@@ -1,0 +1,44 @@
+.detailsHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 300px;
+  width: 100%;
+  position: relative;
+}
+
+.detailsHeaderContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../../../images/pokeball.svg");
+  background-repeat: no-repeat;
+  background-position: right 10px bottom 10px;
+  background-size: 280px;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.imageContainer {
+  flex: 0 0 200px;
+}
+
+.image {
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: -270px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+.placeholder {
+  color: #999;
+  font-size: 18px;
+}
