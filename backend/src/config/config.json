@@ -1,0 +1,16 @@
+{
+  "security": {
+    "tokenLife": 3600
+  },
+  "default": {
+    "user": {
+      "username": "admin",
+      "password": "admin"
+    },
+    "client": {
+      "name": "NextJS API v1",
+      "clientId": "nextjs",
+      "clientSecret": "SomeRandomCharsAndNumbers"
+    }
+  }
+}
