@@ -24,7 +24,7 @@ class Server {
 
   public routes(): void {
     this.app.use('/login', new AuthenticationRouter().router);
-    this.app.use('/pokemon', new PokemonRouter().router);
+    this.app.use('/pokemons', new PokemonRouter().router);
   }
 
   public config(): void {

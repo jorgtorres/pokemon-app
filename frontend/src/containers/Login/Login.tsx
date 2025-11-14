@@ -4,6 +4,9 @@ import { navigate } from "gatsby";
 import User from "../../assets/user.svg";
 import Password from "../../assets/password.svg";
 import * as styles from "./Login.module.scss";
+import { setAccessToken } from "../../api/auth";
+import TextInput from "../../components/TextInput";
+import Pokeball from "../../assets/pokeball.svg";
 
 interface LoginProps {
   path?: string;
@@ -24,7 +27,6 @@ const Login = ({ path }: LoginProps) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    event.stopPropagation();
     const formData = new FormData(event.currentTarget);
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
@@ -36,8 +38,9 @@ const Login = ({ path }: LoginProps) => {
         grant_type: "password",
       },
       {
-        onSuccess: () => {
-          navigate(`/app/profile`);
+        onSuccess: (data) => {
+          setAccessToken(data.access_token ?? "");
+          navigate(`/app/pokedex`);
         },
         onError: (error) => {
           console.log("Login failed:", error.message);
@@ -47,27 +50,41 @@ const Login = ({ path }: LoginProps) => {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <form
-        method="post"
-        onSubmit={async (event) => {
-          await handleSubmit(event);
-        }}
-      >
-        <div className={styles.formContainer}>
-          <label className={styles.label}>Username:</label>
-          <div className={styles.searchWrapper}>
-            <User className={styles.icon} />
-            <input type="text" name="username" onChange={handleUpdate} />
+    <div className={styles.layout}>
+      <div className={styles.titleContainer}>
+        <Pokeball className={styles.svg} />
+        <h1 className={styles.headline}>Pokédex</h1>
+      </div>
+      <div className={styles.loginContainer}>
+        <form
+          method="post"
+          onSubmit={async (event) => {
+            await handleSubmit(event);
+          }}
+        >
+          <div className={styles.formContainer}>
+            <label className={styles.label}>Username:</label>
+            <TextInput
+              name="username"
+              placeholder="Enter a username"
+              handleUpdate={handleUpdate}
+              Icon={User}
+            />
+            <label className={styles.label}>Password:</label>
+            <TextInput
+              name="password"
+              placeholder="Enter a password"
+              handleUpdate={handleUpdate}
+              Icon={Password}
+            />
+            <input
+              type="submit"
+              className={styles.loginButton}
+              value="Log In"
+            />
           </div>
-          <label className={styles.label}>Password:</label>
-          <div className={styles.searchWrapper}>
-            <Password className={styles.icon} />
-            <input type="password" name="password" onChange={handleUpdate} />
-          </div>
-          <input type="submit" className={styles.loginButton} value="Log In" />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

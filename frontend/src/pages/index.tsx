@@ -1,7 +1,8 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { navigate, type HeadFC, type PageProps } from "gatsby";
 
 const IndexPage: React.FC<PageProps> = () => {
+  navigate("/app/pokedex");
   return <main></main>;
 };
 

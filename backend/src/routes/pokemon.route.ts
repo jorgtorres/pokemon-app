@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { Router } from 'express';
+import pokemonController from '../controllers/pokemon.controller.js';
 
 export class PokemonRouter {
   router: Router;
@@ -13,9 +14,13 @@ export class PokemonRouter {
     this.router.get(
       '/',
       passport.authenticate('bearer', { session: false }),
-      (req, res) => {
-        res.json({ message: 'Welcome to the Pokemon API' });
-      }
+      pokemonController.searchPokemons
+    );
+
+    this.router.get(
+      '/:id',
+      passport.authenticate('bearer', { session: false }),
+      pokemonController.getPokemon
     );
   }
 }

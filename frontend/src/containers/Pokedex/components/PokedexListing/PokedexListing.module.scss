@@ -1,0 +1,21 @@
+.listingContainer {
+  margin: 2rem;
+  width: 96%;
+  height: 100vh; /* adjust as needed */
+  background: white;
+
+  border-radius: 20px 20px 0 0; /* round top corners only */
+
+  box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.3);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  align-content: start;
+}
+
+.listingContainer > * {
+  max-height: 280px;
+}

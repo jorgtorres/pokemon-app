@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@eslint/create-config": "^1.11.0",
+    "axios": "^1.13.2",
     "compression": "^1.8.1",
     "connect-sqlite3": "^0.9.16",
     "cors": "^2.8.5",

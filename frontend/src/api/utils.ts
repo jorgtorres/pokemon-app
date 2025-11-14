@@ -1,8 +1,13 @@
 import { getAccessToken } from "./auth";
 import { invokeService } from "./services/invokeService";
 import ServiceConfig from "./model/invokeServices/serviceConfig";
-import type { MutationFunction, UseMutationOptions } from "react-query";
-import { useMutation, useQueryClient } from "react-query";
+import type {
+  MutationFunction,
+  QueryKey,
+  UseMutationOptions,
+  UseQueryOptions,
+} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import type { AxiosError } from "axios";
 
 const fetchWithCancellation = async <T>(
@@ -38,6 +43,21 @@ export const fetchWithServiceName = (
     return fetchWithCancellation<T>(config, serviceName, isBasicAuth);
   };
 };
+
+export const useCustomQuery = <T>(
+  key: Array<string>,
+  queryFn: (...args: any) => Promise<T>,
+  options?: UseQueryOptions<T, AxiosError>
+) => {
+  return useQuery<T, AxiosError>(key, queryFn, options);
+};
+
+export type UseCustomQueryOptions<T> = UseQueryOptions<
+  T,
+  AxiosError<any>,
+  T,
+  QueryKey
+>;
 
 export function useCustomMutation<TData, TVariables>(
   mutationFn: MutationFunction<TData, TVariables>,
