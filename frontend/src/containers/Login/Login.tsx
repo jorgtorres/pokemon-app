@@ -10,11 +10,7 @@ import backendService from "../../api/services/backend/backend.service";
 import LoginResponse from "../../api/model/backend/LoginResponse";
 import { toast } from "react-toastify";
 
-interface LoginProps {
-  path?: string;
-}
-
-const Login = ({ path }: LoginProps) => {
+const Login = () => {
   useEffect(() => {
     if (isLoggedIn() && location?.pathname == `/app/login/`) {
       navigate(`/app/pokedex`);
@@ -60,6 +56,7 @@ const Login = ({ path }: LoginProps) => {
             </label>
             <TextInput
               id="username"
+              dataTestId="username-input"
               name="username"
               placeholder="Enter a username"
               Icon={User}
@@ -69,6 +66,7 @@ const Login = ({ path }: LoginProps) => {
             </label>
             <TextInput
               id="password"
+              dataTestId="password-input"
               name="password"
               type="password"
               placeholder="Enter a password"

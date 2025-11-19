@@ -6,6 +6,7 @@ interface TextInputProps {
   id: string;
   name: string;
   placeholder: string;
+  dataTestId?: string;
   handleUpdate?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   Icon?: React.ComponentType<any>;
   type?: string;
@@ -18,6 +19,7 @@ const TextInput = ({
   id,
   name,
   placeholder,
+  dataTestId,
   handleUpdate,
   Icon,
   type,
@@ -30,7 +32,7 @@ const TextInput = ({
       {Icon && <Icon className={styles.icon} />}
       <input
         id={id}
-        data-testid={id}
+        data-testid={dataTestId}
         placeholder={placeholder}
         type={type ?? "text"}
         name={name}

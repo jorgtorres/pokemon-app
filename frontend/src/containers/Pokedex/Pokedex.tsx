@@ -10,11 +10,7 @@ import { useDispatch } from "react-redux";
 import { setTextSearchValue } from "../../redux/reducers/filterPageReducer";
 import useTypedSelector from "../../redux/useTypedSelector";
 
-interface PokedexProps {
-  location: Location;
-}
-
-const Pokedex = ({ location, ...rest }: PokedexProps) => {
+const Pokedex = () => {
   const dispatch = useDispatch();
 
   const {
@@ -48,6 +44,7 @@ const Pokedex = ({ location, ...rest }: PokedexProps) => {
           <div className={styles.formContainer}>
             <TextInput
               id="search-input"
+              dataTestId="search-input"
               name="search"
               placeholder="Search"
               handleUpdate={handleSearchBarTextChange}
